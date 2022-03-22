@@ -1,0 +1,23 @@
+.pop-up
+{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(34, 34, 34, 0.089);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pop-up .dialog{
+    background-color: white;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.383);
+    border-radius: 8px;
+}
+
+.pop-up .dialog .title-dialog
+{
+    padding: 12px;
+}

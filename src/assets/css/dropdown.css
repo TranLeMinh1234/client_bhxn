@@ -1,0 +1,29 @@
+.dropdown
+{
+    position: absolute;
+    max-height: 180px;
+    width: 99%;
+    box-shadow: 0px 0px 10px gray;
+    z-index: 999999;
+    overflow-y: scroll;
+    display: block;
+    margin-top: 8px;
+    background-color: white;
+}
+
+.dropdown-item
+{
+    border-bottom: 1px solid silver; 
+    height: 30px;   
+    background-color: white;
+}
+
+.dropdown-item:hover
+{
+    background-color: rgba(110, 136, 207, 1);
+}
+
+.selected-item
+{
+    background-color: rgba(110, 136, 207, 1);
+}

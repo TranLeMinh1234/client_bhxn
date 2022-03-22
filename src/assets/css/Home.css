@@ -1,0 +1,83 @@
+#id{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.header-home
+{
+    width: 100%;
+    height: 60px;
+    background-image: url('https://dichvucong.baohiemxahoi.gov.vn/nen_bg.7372f84cd18d17a5e229.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5px 0px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+}
+
+.logo{
+    width: 40%;
+    height: 78%;
+}
+
+.btn-bar-home
+{
+    display: flex;
+    position: absolute;
+    right: 60px;
+
+}
+
+.btn-bar-home button
+{
+    outline: none;
+    border: none;
+    width: 100px;
+    height: 20px;
+    font-size: 12px;
+    background-color: transparent;
+    color: white;
+}
+
+.btn-bar-home button:hover{
+   background-color: silver;
+}
+
+.btn-bar-home button + button{
+    margin-left: 10px;
+}
+
+.slide{
+    width: 100vw;
+    height: calc(100vh - 200px);
+}
+
+.img-slide{
+    height: 100vh;
+}
+
+.body-dialog-login
+{
+    width: 100%;
+}
+
+.inp-bar{
+    width: 80%;
+    margin: auto;
+}
+
+.Register{
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    width: 70px;
+    text-align: center;
+}
+
+.Register:hover
+{
+    background-color: silver;
+    color: white;
+}

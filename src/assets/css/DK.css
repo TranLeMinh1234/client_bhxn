@@ -1,0 +1,46 @@
+#DK{
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll;
+}
+
+.title-DK
+{
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+    color: #06274f;
+}
+
+#DK .line-input
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#DK .title-field
+{
+    font-size: 12px;
+    width: 180px;
+}
+
+#DK .sumbit-btn
+{
+    outline: none;
+    border: none;
+    background-color: #1976d2;
+    color: white;
+    padding: 8px;
+}
+
+
+#DK .sumbit-btn:hover
+{
+    background-color: #1976d2a2;
+}
+
+#DK .sumbit-btn:active{
+    background-color: #1d7bda;
+}

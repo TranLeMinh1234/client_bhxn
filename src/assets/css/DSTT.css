@@ -1,0 +1,66 @@
+#DSTT
+{
+    width: 100%;
+    height: 100%;
+}
+
+.title-list
+{
+    margin: 10px 10px;
+    width: 95%;
+    background-color: #e8e9ea;
+    padding: 5px;
+}
+
+.filter-bar{
+    margin-left: 10px;
+    width: 95%;
+    padding: 5px;
+    display: flex;
+}
+
+.filter-item
+{
+    width: 20%;
+    position: relative;
+}
+
+.filter-item + .filter-item
+{
+    margin-left: 20px;
+}
+
+.find-icon
+{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 6px;
+    right: 0px;
+}
+
+.list
+{
+    margin: 10px 0px 0px 10px;
+    width: 95%;
+    overflow: scroll;
+    height: 60%;
+}
+
+table
+{
+    font-size: 10px;
+    border-collapse: collapse;
+    width: 120%;
+}
+
+table td,th{
+    border: 1px solid black;
+}
+
+th{
+    background-color: #0a76b1;
+    color: white;
+    padding: 4px;
+    text-align: center;
+}

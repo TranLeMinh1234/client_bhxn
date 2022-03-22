@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="toast-msg-box"></div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// eslint-disable-next-line no-unused-vars
+import CommonJS from './js/common.js';
 
 export default {
+  el: '#app',
   name: 'App',
   components: {
-    HelloWorld
+  },
+  methods:{
+    minh()
+    {
+      let me = this;
+      CommonJS.markOn();
+      me.$refs.observe.validateComponent();
+    },
+  },
+  data(){
+    return {
+      
+    }
   }
 }
 </script>
@@ -19,10 +33,6 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
+@import url('./assets/css/main.css');
 </style>
