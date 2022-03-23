@@ -8,9 +8,10 @@
 .title-list
 {
     margin: 10px 10px;
-    width: 95%;
+    width: 98%;
     background-color: #e8e9ea;
     padding: 5px;
+    font-size: 20px;
 }
 
 .warning

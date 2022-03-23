@@ -1,11 +1,16 @@
 {
   "name": "client_bhxn1",
   "version": "0.1.0",
+  "description": "a really cool app",
   "private": true,
+  "engines": {
+    "node": "12.11.1"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "node index.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",

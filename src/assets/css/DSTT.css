@@ -7,7 +7,7 @@
 .title-list
 {
     margin: 10px 10px;
-    width: 95%;
+    width: 98%;
     background-color: #e8e9ea;
     padding: 5px;
 }
@@ -42,7 +42,7 @@
 .list
 {
     margin: 10px 0px 0px 10px;
-    width: 95%;
+    width: 98%;
     overflow: scroll;
     height: 60%;
 }

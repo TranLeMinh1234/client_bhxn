@@ -10,6 +10,7 @@
                 @keyup.enter="enterEvent"
                 @keyup.up="changeSelectedItemInDropDown"
                 @keyup.down="changeSelectedItemInDropDown"
+                :placeholder="placeholder"
             >
             <div 
                 :class="['arrow-combobox' , !isValid ? 'inValid-arrow' : '']" 
@@ -18,6 +19,12 @@
                 <i class="fas fa-chevron-down"></i>
             </div>
         </div>
+        <div :style="{
+            fontSize: isValid ? '' : '12px',
+            display: isValid ? 'none' : 'block',
+            position: 'absolute',
+            color: 'red',
+        }">{{errorsMsg}}</div>
         <dropdown 
             :valueSearch="valueSearch" 
             :query="query"
@@ -65,6 +72,10 @@ export default {
         rules: {
             type: String,
             default: ""
+        },
+        placeholder: {
+            type: String,
+            default: ""
         }
     },
     components:{
@@ -82,7 +93,18 @@ export default {
                     me.showDropDown = false;
                     me.valueSearch = value[me.displayField];
                     me.valueResult = value[me.valueField];
-                    me.validateSelf();
+                    let errors = me.validateSelf();
+                    if(errors && errors.length > 0)
+                    {
+                        switch(errors[0])
+                        {
+                        case 'required':
+                            me.errorsMsg = 'Thông tin không được bỏ trống!';
+                            break;
+                        default:
+                            break;
+                        }
+                    }
                 },
                 input: function(value,index)
                 {

@@ -33,12 +33,15 @@ export default {
             }
             else
                 me.isValid = true;
+            
+            return errors;
         }
     },
     data()
     {
         return {
             isValid: true,
+            errorsMsg: ''
         };
     }
 

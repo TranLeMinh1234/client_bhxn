@@ -7,7 +7,7 @@
 .header-home
 {
     width: 100%;
-    height: 60px;
+    height: 100px;
     background-image: url('https://dichvucong.baohiemxahoi.gov.vn/nen_bg.7372f84cd18d17a5e229.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -35,8 +35,8 @@
     outline: none;
     border: none;
     width: 100px;
-    height: 20px;
-    font-size: 12px;
+    height: 40px;
+    font-size: 14px;
     background-color: transparent;
     color: white;
 }
@@ -53,19 +53,19 @@
 {
     background-color: #e8e9ea;
     width: 100%;
-    height: 30px;
+    height: 40px;
     margin: 0px 0px !important;
     display: flex;
 }
 
 .item-nav:nth-child(1)
 {
-    margin-left: 20px;
+    margin-left: 5%;
 }
 
 .item-nav
 {
-    font-size: 12px;
+    font-size: 16px;
     padding: 6px;
     text-decoration: none;
     color: #06274f !important;

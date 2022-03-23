@@ -63,7 +63,7 @@ export default {
     return {
       isShowDialogLogin: false,
       configDialogLogin: {
-        width: '300px',
+        width: '400px',
         height: '200px',
         titleDialog: 'Đăng nhập'
       },

@@ -7,7 +7,7 @@
 .header-home
 {
     width: 100%;
-    height: 60px;
+    height: 100px;
     background-image: url('https://dichvucong.baohiemxahoi.gov.vn/nen_bg.7372f84cd18d17a5e229.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -71,9 +71,10 @@
 .Register{
     color: white;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 14px;
     width: 70px;
     text-align: center;
+    padding-top: 10px;
 }
 
 .Register:hover

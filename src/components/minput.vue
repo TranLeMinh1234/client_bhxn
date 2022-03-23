@@ -12,12 +12,14 @@
     />
     <div
       :style="{
-        fontSize: isValid ? '' : '10px',
+        fontSize: isValid ? '' : '12px',
         display: isValid ? 'none' : 'block',
-        position: 'absolute'
+        color: 'red',
+        position: 'absolute',
+        left: '10px'
       }"
     >
-      ajsdhjkashdkj
+      {{errorsMsg}}
     </div>
   </div>
 </template>
@@ -58,8 +60,18 @@ export default {
           me.valueResult = event.target.value;
           me.$emit("input", me.valueResult);
           me.$emit("inputEvent", me.valueResult);
-          console.log(me.valueResult);
-          me.validateSelf();
+          let errors = me.validateSelf();
+          if(errors && errors.length > 0)
+          {
+            switch(errors[0])
+            {
+              case 'required':
+                me.errorsMsg = 'Thông tin không được bỏ trống!';
+                break;
+              default:
+                break;
+            }
+          }
         },
       };
     },

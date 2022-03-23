@@ -5,59 +5,59 @@
         <div class="line-input">
             <div class="title-field">Họ và tên*:</div>
             <div style="width: 400px">
-                <minput v-model="tempSaveData.name_user" rules="required" />
+                <minput v-model="tempSaveData.name_user" rules="required" placeholder="Họ và tên"/>
             </div>
         </div>
         <div class="line-input">
             <div class="title-field">Mã số bảo hiểm xã hội*:</div>
             <div style="width: 400px">
-                <minput v-model="tempSaveData.bhxh_code" rules="required"/>
+                <minput v-model="tempSaveData.bhxh_code" rules="required" placeholder="Mã bảo hiểm xã hội"/>
             </div>
         </div>
         <div class="line-input">
             <div class="title-field">Số CCCD/CMND/Hộ chiếu*:</div>
             <div style="width: 400px">
-                <minput v-model="tempSaveData.CMND" rules="required"/>
+                <minput v-model="tempSaveData.CMND" rules="required" placeholder="Số căn cước công dân/chứng minh nhân dân/hộ chiếu"/>
             </div>
         </div>
         <div class="line-input" style="height:20px">
             <div class="title-field">Địa chỉ liên hệ*:</div>
             <div style="width: 150px" >
-                <combobox v-model="tempSaveData.tp"  query="local" displayField="displayField" valueField="valueField" :dataStore="dataCity"/>
+                <combobox v-model="tempSaveData.tp" placeholder="Thành phố" query="local" displayField="displayField" valueField="valueField" :dataStore="dataCity"/>
             </div>
             <div style="width: 105px;margin-left: 20px">
-                <combobox v-model="tempSaveData.h" query="local" displayField="displayField" valueField="valueField" :dataStore="dataH"/>
+                <combobox v-model="tempSaveData.h" placeholder="Huyện" query="local" displayField="displayField" valueField="valueField" :dataStore="dataH"/>
             </div>
             <div style="width: 105px;margin-left: 20px">
-                <combobox v-model="tempSaveData.x" query="local" displayField="displayField" valueField="valueField" :dataStore="dataX"/>
+                <combobox v-model="tempSaveData.x" placeholder="Xã" query="local" displayField="displayField" valueField="valueField" :dataStore="dataX"/>
             </div>
         </div>
         <div class="line-input" style="height:20px">
             <div style="width: 400px;margin-left: 180px;padding-top:20px">
-                <minput v-model="tempSaveData.address_detail" rules="required"/>
+                <minput placeholder="Địa chỉ chi tiết" v-model="tempSaveData.address_detail" rules="required"/>
             </div>
         </div>
         <div class="line-input">
             <div class="title-field">Số chứng thư số của cơ quan, tổ chức, cá nhân:</div>
             <div style="width: 400px">
-                <minput v-model="tempSaveData.cts"/>
+                <minput v-model="tempSaveData.cts" placeholder="Số chứng thư số"/>
             </div>
         </div>
         <div class="line-input">
             <div class="title-field">Địa chỉ thư điện tử:</div>
             <div style="width: 400px">
-                <minput v-model="tempSaveData.email"/>
+                <minput v-model="tempSaveData.email" placeholder="Địa chỉ Email"/>
             </div>
         </div>
         <div class="line-input">
             <div class="title-field">Điện thoại di động*:</div>
             <div style="width: 400px">
-                <minput v-model="tempSaveData.phone" rules="required" />
+                <minput v-model="tempSaveData.phone" rules="required" placeholder="Số điện thoại"/>
             </div>
         </div>
         <div class="line-input">
             <div class="title-field">Đăng ký giao dịch tại*</div>
-            <div style="width: 400px;font-size:12px">
+            <div style="width: 400px;font-size:16px">
                 <input type="radio" value="1" v-model="tempSaveData.transacWhere"> Cổng thông tin điện tử của Bảo hiểm xã hội Việt Nam <br/>
                 <input type="radio" value="0" disabled> Tổ chức I-VAN
             </div>
@@ -65,32 +65,32 @@
         <div class="line-input">
             <div class="title-field">Chọn cơ quan BHXH tiếp nhận*:</div>
             <div style="width: 400px">
-                <minput v-model="tempSaveData.bhxh_cq" rules="required"/>
+                <minput v-model="tempSaveData.bhxh_cq" rules="required" placeholder="Cơ quan tiếp nhận hồ sơ"/>
             </div>
         </div>
         <div class="line-input">
             <div class="title-field">Chọn hình thức nộp hồ sơ:</div>
-            <div style="width: 400px;font-size:12px">
+            <div style="width: 400px;font-size:16px">
                 <input type="radio" value="1" v-model="tempSaveData.submit_method"> Cổng thông tin điện tử của Bảo hiểm xã hội Việt Nam <br/>
                 <input type="radio" value="0" disabled> Tổ chức I-VAN
             </div>
         </div>
         <div class="line-input">
-            <div class="title-field">Chân dung 4*6*:</div>
+            <div class="title-field" >Chân dung 4*6*:</div>
             <div style="width: 400px;font-size:12px">
-                <input type="file">
+                <input type="file" @change="img46Picked">
             </div>
         </div>
         <div class="line-input">
-            <div class="title-field">Ảnh CMND mặt trước*:</div>
+            <div class="title-field" >Ảnh CMND mặt trước*:</div>
             <div style="width: 400px;font-size:12px">
-                <input type="file" >
+                <input type="file" @change="imgCMNDFrontPicked">
             </div>
         </div>
         <div class="line-input">
-            <div class="title-field">Ảnh CMND mặt sau*:</div>
+            <div class="title-field" @change="imgCMNDBackPicked">Ảnh CMND mặt sau*:</div>
             <div style="width: 400px;font-size:12px">
-                <input type="file" >
+                <input type="file" @change="imgCMNDBackPicked">
             </div>
         </div>
         <div class="line-input">
@@ -114,6 +114,9 @@ export default {
         {
             let me = this;
             let isValid = me.$refs.observe.validateComponent();
+            if(me.tempSaveData.img46 == null || me.tempSaveData.imgFront == null || me.tempSaveData.imgBack == null )
+                isValid = false;
+                
             if(!isValid)
                 return;
             return {
@@ -123,7 +126,23 @@ export default {
                 dataJson: JSON.stringify(me.tempSaveData),
                 bhxn_code: me.tempSaveData.bhxn_code
             }
-        }
+        },
+        img46Picked(event)
+        {
+            let me =this;
+            me.tempSaveData.img46 = event.target.files[0].name;
+        },
+        imgCMNDFrontPicked(event)
+        {
+            let me =this;
+            me.tempSaveData.imgFront = event.target.files[0].name;
+        },
+        imgCMNDBackPicked(event)
+        {
+            let me =this;
+            me.tempSaveData.imgBack = event.target.files[0].name;
+        },
+        
     },
     data()
     {
@@ -227,7 +246,7 @@ export default {
     border-style: solid;
     border-color: black;
     outline: none;
-    font-size: 10px;
+    font-size: 16px;
     height: 100%;
     padding-bottom: 7px;
 }
@@ -243,5 +262,11 @@ export default {
     display: block;
     margin-top: 8px;
     background-color: white;
+}
+
+.inValid-arrow{
+    border-color: red !important;
+    border-width: 0px 0px 1px 0px !important;
+    border-style: solid !important;
 }
 </style>
