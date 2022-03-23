@@ -2,7 +2,7 @@
   <div id="app">
     <div class="toast-msg-box"></div>
     <router-view></router-view>
-     <popup :config="configNotiDialog" :isShow="isShowNoti">
+     <popup :config="configNotiDialog" :isShow="isShowNoti" style="z-index:999999">
         <div style="padding-left: 15px">{{stringNoti}}</div>
         <button class="btn-noti" @click="closeNotiDialog">Đóng</button>
      </popup>
@@ -27,7 +27,7 @@ export default {
     
   },
   methods:{
-    minh()
+    minhasdasd()
     {
       let me = this;
       CommonJS.markOn();

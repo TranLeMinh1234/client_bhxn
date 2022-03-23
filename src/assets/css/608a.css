@@ -22,7 +22,7 @@
 .element-form
 {
     margin-left: 10px;
-    font-size: 10px;
+    font-size: 16px;
     width: 95%;
 }
 
@@ -44,4 +44,22 @@
 
 .line-item + .line-item{
     margin-left: 40px;
+}
+
+#a608 .sumbit-btn
+{
+    outline: none;
+    border: none;
+    background-color: #1976d2;
+    color: white;
+    padding: 8px;
+}
+
+#a608 .sumbit-btn:hover
+{
+    background-color: #1976d2a2;
+}
+
+#a608 .sumbit-btn:active{
+    background-color: #1d7bda;
 }

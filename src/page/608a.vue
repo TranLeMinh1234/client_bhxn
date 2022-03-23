@@ -23,9 +23,12 @@
               </div>
               <div class="line-item">
                   <div class="title-field">[14.2]. Giới tính: </div>
-                  <input type="radio" value="1" />Nam
-                  <input type="radio" value="0" style="margin-left: 20px" />Nữ
-                  {{asd}}
+                  <div style="display: flex;align-items: flex-start;">
+                      <input type="radio" value="1" />Nam
+                  </div>
+                  <div style="display: flex;align-items: flex-start;">
+                      <input type="radio" value="0" style="margin-left: 20px" />Nữ
+                  </div>
               </div>
           </div>
           <div class="line-input">
@@ -36,7 +39,40 @@
                   <div style="width: 130px;margin-left:20px"><combobox /></div>
               </div>
           </div>
+          <div class="line-input">
+              <div class="line-item">
+                  <div class="title-field">[14.5]. Số CMND/CCCD/Hộ chiếu: </div>
+                  <m-input />
+              </div>
+          </div>
+          <div class="line-input">
+              <div class="line-item">
+                  <div class="title-field">[15]. Mức tiền đóng: </div>
+                  <m-input />
+              </div>
+               <div class="line-item">
+                  <div class="title-field">[16]. Phương thức đóng: </div>
+                  <m-input />
+              </div>
+          </div>
+          <div class="line-input">
+              <div class="line-item">
+                  <div class="title-field">[17]. Nơi đăng ký khám, chữa bệnh ban đầu: </div>
+                  <div style="width: 200px"><combobox /></div>
+                  <div style="width: 190px;margin-left:20px"><combobox /></div>
+              </div>
+          </div>
+           <div class="line-input">
+              <div class="line-item" style="width: 800px">
+                  <div class="title-field" >[18]. Nội dung thay đổi, yêu cầu khác: </div>
+                  <m-input />
+              </div>
+          </div>
       </div>
+      <div class="line-input">
+            <button class="sumbit-btn" style="margin: auto" @click="saveData">Ghi nhận</button>
+        </div>
+        <div style="height: 100px"></div>
   </div>
 </template>
 

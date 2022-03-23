@@ -13,8 +13,10 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "vue-axios": "^3.4.1",
     "vue-router": "^3.5.3"
   },
   "devDependencies": {
@@ -38,7 +40,10 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-unused-vars": "off",
+      "no-debugger": 1
+    }
   },
   "browserslist": [
     "> 1%",

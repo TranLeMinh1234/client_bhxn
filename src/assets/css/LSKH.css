@@ -40,12 +40,12 @@
     right: 0px;
 }
 
-.list
+#LSKH .list
 {
     margin: 10px 0px 0px 10px;
     width: 98%;
     overflow: scroll;
-    height: 60%;
+    height: 65%;
 }
 
 table

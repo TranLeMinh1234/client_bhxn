@@ -25,7 +25,9 @@
                   <tr v-for="(item, index) in listDisplay" :key="index">
                       <td>{{item.STT}}</td>
                       <td style="cursor: pointer">
-                          <img style="width: 20px;height: 20px;margin-left: 6px" src="../assets/img/kh.jpg" alt="">
+                          <router-link :to="item.serviceCode">
+                              <img style="width: 20px;height: 20px;margin-left: 6px" src="../assets/img/kh.jpg" alt="">
+                          </router-link>
                       </td>
                       <td>{{item.nameService}}</td>
                       <td>{{item.serviceCode}}</td>

@@ -35,12 +35,12 @@
         <div class="body-dialog-login">
         <validateObserve ref="observe">
           <div class="inp-bar">
-            <m-input rules="required" placeholder="Mã số BHXN"/>
-            <m-input rules="required" placeholder="Mật khẩu" type="password" style="margin-top: 20px"/>
+            <m-input rules="required" placeholder="Mã số BHXN" v-model="dataLogin.bhxn_code"/>
+            <m-input rules="required" placeholder="Mật khẩu"  v-model="dataLogin.password" type="password" style="margin-top: 20px"/>
           </div>
           <div class="btn-bar-dialog">
             <button @click="closeDialog()">Hủy</button>
-            <button style="background-color: #1941ff;color:white">Đăng nhập</button>
+            <button style="background-color: #1941ff;color:white" @click="login">Đăng nhập</button>
           </div>
         </validateObserve>
         </div>
@@ -67,17 +67,35 @@ export default {
         height: '200px',
         titleDialog: 'Đăng nhập'
       },
+      dataLogin:{
+        bhxn_code: '',
+        password: '',
+      },
     }
   },
   methods: {
     closeDialog(){
       let me = this;
-      console.log(123213);
       me.isShowDialogLogin = false;
     },
     openDialog(){
       let me = this;
       me.isShowDialogLogin = true;
+    },
+    login()
+    {
+      let me = this;
+      debugger;
+      if(me.dataLogin.bhxn_code == 'tlminh' && me.dataLogin.password == '1')
+      {
+        localStorage.setItem('infoUser', JSON.stringify(me.dataLogin));
+        me.closeDialog();
+        me.$router.push('/DSTT');
+      }
+      else
+      {
+        me.$root.$children[0].showNoti('mã bảo hiểm xã hội hoặc mật khẩu chưa chính xác');
+      }
     }
   }
 }

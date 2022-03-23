@@ -105,10 +105,30 @@
 import minput from '../components/minput.vue'
 import combobox from '../components/combobox.vue'
 import validateObserve from '../components/validateObserve.vue'
+// import axios from 'axios';
 
 export default {
     name:'DK',
     components:{minput,combobox,validateObserve},
+    created()
+    {
+        // axios({
+        //     method: 'get',
+        //     url: 'http://dd3c-14-231-204-241.ngrok.io/BHXH/login?bhxh_code=4287fja4234&acc_password=123456',
+        //     headers: {
+        //         "Content-Length": 21,
+        //         "Content-Type": "application/json;charset=ISO-8859-1",
+        //         Date: "Wed, 23 Mar 2022 17:45:22 GMT",
+        //         "Ngrok-Agent-Ips": "14.231.204.241",
+        //     }
+        // }).then(res=>{console.log(res)})
+
+        // let me = this;
+        // // check quyền 
+        // let infoUser = localStorage.getItem('infoUser');
+        // if(!infoUser)
+        //     me.$router.push('/Home')
+    },
     methods: {
         saveData()
         {

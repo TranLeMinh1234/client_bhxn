@@ -20,12 +20,25 @@
 </template>
 
 <script>
+import BasePage from '../page/BasePage.vue'
+
 export default {
     name:'KKHS',
+    extends: BasePage,
     data() {
         return {
             isShowMenu: true,
             tabActive: 1
+        }
+    },
+    created()
+    {
+        let me = this;
+        // check quyền 
+        let infoUser = localStorage.getItem('infoUser');
+        if(!infoUser)
+        {
+            me.$router.push('/Home');
         }
     },
     methods: {
@@ -43,7 +56,7 @@ export default {
                             width: '20%'
                         },
                         {
-                            width: '3.3%'
+                            width: '1.8%'
                         }
                     ],
                     {
@@ -57,7 +70,7 @@ export default {
                 featureTabs.animate(
                     [
                         {
-                            width: '3.3%'
+                            width: '1.8%'
                         },
                         {
                             width: '20%'
