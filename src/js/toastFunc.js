@@ -22,7 +22,7 @@ class Toast{
 
         setTimeout(()=>{
             toastBox.removeChild(toastNode);
-        },4000);
+        },3000);
     }
 
     getIconToast(typeToast)
@@ -38,5 +38,5 @@ class Toast{
         }
     }
 }
-
-export var toastObject = new Toast();
+var toastObject = new Toast();
+export default toastObject;

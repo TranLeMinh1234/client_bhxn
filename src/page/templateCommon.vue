@@ -43,6 +43,7 @@ import popup from '../components/popup.vue'
 import mInput from '../components/minput.vue'
 import BasePage from '../page/BasePage.vue'
 import validateObserve from '../components/validateObserve.vue'
+import common from '../js/common'
 
 export default {
   components:{popup,mInput,validateObserve},
@@ -80,7 +81,7 @@ export default {
       }
       else
       {
-        me.$root.$children[0].showNoti('mã bảo hiểm xã hội hoặc mật khẩu chưa chính xác');
+        me.$root.$children[0].showNoti('Mã bảo hiểm xã hội hoặc mật khẩu chưa chính xác');
       }
     }
   },
@@ -89,7 +90,6 @@ export default {
     let me = this;
     me.isLogin = true;
     // check quyền 
-    debugger
     let infoUser = localStorage.getItem('infoUser');
     if(!infoUser)
       me.isLogin = false;

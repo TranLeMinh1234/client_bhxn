@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import validateRules from '../js/validateRules.js';
+import {validateRules} from '../js/validateRules.js';
 
 export default {
     name: 'BaseInputComponent',

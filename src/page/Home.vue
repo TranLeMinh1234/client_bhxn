@@ -52,12 +52,15 @@
 import popup from '../components/popup.vue';
 import mInput from '../components/minput.vue';
 import validateObserve from '../components/validateObserve.vue';
+import axios from 'axios'
+import commonJs from '../js/common'
 
 export default {
   components: { popup,mInput,validateObserve },
   name: 'Home',
   created() {
-    
+    let me = this;
+    // axios.get(`${commonJs.doMainApi}/BHXH/login?bhxh_code=4287fja4234&acc_password=123456`).then(res => console.log(res))
   },
   data() {
     return {
@@ -85,7 +88,6 @@ export default {
     login()
     {
       let me = this;
-      debugger;
       if(me.dataLogin.bhxn_code == 'tlminh' && me.dataLogin.password == '1')
       {
         localStorage.setItem('infoUser', JSON.stringify(me.dataLogin));

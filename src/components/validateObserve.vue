@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import validateRules from '../js/validateRules.js';
+import {mesErrorFollowType,validateRules} from '../js/validateRules.js';
 
 export default {
     name: 'validateObserve',
@@ -31,7 +31,7 @@ export default {
                 {
                     //bật cờ invalid cho component
                     componentValidate.$data.isValid = false;
-
+                    componentValidate.$data.errorsMsg = mesErrorFollowType(errorsComponet);
                     errorList.push(inforValidate);
                 }
                 //tắt cờ invalid cho component

@@ -16,7 +16,7 @@
   padding: 10px 10px 10px 10px;
   border-radius: 4px;
   font-size: 20px;
-  animation: toastInit 1s ease-in-out;
+  animation: toastInit 1s ease-in-out forwards;
   box-shadow: 0 0 2px 3px rgb(139, 132, 132);
 }
 

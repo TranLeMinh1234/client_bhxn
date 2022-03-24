@@ -27,5 +27,19 @@ function required(valueValidate){
     return valueValidate !== null && valueValidate !== undefined && valueValidate !== "";
 }
 
+function mesErrorFollowType(errors)
+{
+    let errorsMsg = '';
+    switch(errors[0])
+    {
+        case 'required':
+            errorsMsg = 'Thông tin không được bỏ trống!';
+            break;
+        default:
+            break;
+    }
+    return errorsMsg;
+}
 
-export {validateRules as default};
+
+export {mesErrorFollowType,validateRules};

@@ -1,5 +1,5 @@
 var commonJS = {
-    doMainLocal: 'localhost:8080',
+    doMainApi: 'http://6218-14-231-204-241.ngrok.io',
     markOn: function()
     {
         let body = document.querySelector('body');

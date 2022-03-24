@@ -105,6 +105,7 @@
 import minput from '../components/minput.vue'
 import combobox from '../components/combobox.vue'
 import validateObserve from '../components/validateObserve.vue'
+import Toast from '../js/toastFunc.js'
 // import axios from 'axios';
 
 export default {
@@ -133,6 +134,7 @@ export default {
         saveData()
         {
             let me = this;
+            Toast.callToast("Nộp tờ khai thành công","success");
             let isValid = me.$refs.observe.validateComponent();
             if(me.tempSaveData.img46 == null || me.tempSaveData.imgFront == null || me.tempSaveData.imgBack == null )
                 isValid = false;
