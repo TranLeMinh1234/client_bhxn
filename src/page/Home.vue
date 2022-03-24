@@ -102,6 +102,7 @@ export default {
         else
         {
           me.$root.$children[0].showNoti('Mã bảo hiểm xã hội hoặc mật khẩu chưa chính xác');
+          common.markOff();
         }
       })
     }
