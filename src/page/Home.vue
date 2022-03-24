@@ -53,7 +53,7 @@ import popup from '../components/popup.vue';
 import mInput from '../components/minput.vue';
 import validateObserve from '../components/validateObserve.vue';
 import axios from 'axios'
-import commonJs from '../js/common'
+import common from '../js/common'
 
 export default {
   components: { popup,mInput,validateObserve },
@@ -88,16 +88,22 @@ export default {
     login()
     {
       let me = this;
-      if(me.dataLogin.bhxn_code == 'tlminh' && me.dataLogin.password == '1')
-      {
-        localStorage.setItem('infoUser', JSON.stringify(me.dataLogin));
-        me.closeDialog();
-        me.$router.push('/DSTT');
-      }
-      else
-      {
-        me.$root.$children[0].showNoti('mã bảo hiểm xã hội hoặc mật khẩu chưa chính xác');
-      }
+      common.markOn();
+      axios
+      .get(`${common.doMainApi}/BHXH/login?bhxh_code=${me.dataLogin.bhxn_code}&acc_password=${me.dataLogin.password}`)
+      .then(res=>{
+        if(res.data.status == 'accepted')
+        {
+          localStorage.setItem('infoUser', JSON.stringify(me.dataLogin));
+          me.closeDialog();
+          common.markOff();
+          me.$router.push('/DSTT');
+        }
+        else
+        {
+          me.$root.$children[0].showNoti('Mã bảo hiểm xã hội hoặc mật khẩu chưa chính xác');
+        }
+      })
     }
   }
 }
