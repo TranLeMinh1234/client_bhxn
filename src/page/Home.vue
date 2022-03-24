@@ -88,6 +88,10 @@ export default {
     login()
     {
       let me = this;
+      let isValid = me.$refs.observe.validateComponent();
+          
+      if(!isValid)
+          return;
       common.markOn();
       localStorage.setItem('infoUser',JSON.stringify(me.dataLogin))
       me.$router.push('/DSTT')

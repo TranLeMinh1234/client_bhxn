@@ -74,6 +74,10 @@ export default {
     login()
     {
       let me = this;
+      let isValid = me.$refs.observe.validateComponent();
+          
+      if(!isValid)
+          return;
       common.markOn();
       axios
       .get(`${common.doMainApi}/BHXH/login?bhxh_code=${me.dataLogin.bhxn_code}&acc_password=${me.dataLogin.password}`)
