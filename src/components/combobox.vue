@@ -46,7 +46,7 @@ export default {
     name: 'combobox',
      props: {
         value: {
-            type:String,
+            type:[String,Number],
             default: ''
         },
         query: {

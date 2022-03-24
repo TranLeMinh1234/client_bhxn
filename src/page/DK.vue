@@ -105,6 +105,7 @@
 import minput from '../components/minput.vue'
 import combobox from '../components/combobox.vue'
 import validateObserve from '../components/validateObserve.vue'
+import common from '../js/common.js';
 import Toast from '../js/toastFunc.js'
 // import axios from 'axios';
 
@@ -134,20 +135,25 @@ export default {
         saveData()
         {
             let me = this;
-            Toast.callToast("Nộp tờ khai thành công","success");
+            //Toast.callToast("Nộp tờ khai thành công","success");
             let isValid = me.$refs.observe.validateComponent();
             if(me.tempSaveData.img46 == null || me.tempSaveData.imgFront == null || me.tempSaveData.imgBack == null )
                 isValid = false;
                 
             if(!isValid)
                 return;
-            return {
-                id: 0,
-                profile_type_code: '602a',
-                created_date: new Date(),
-                dataJson: JSON.stringify(me.tempSaveData),
-                bhxn_code: me.tempSaveData.bhxn_code
+                
+            let dataSave = {
+                profileId: 0,
+                profileCodeType: '602a',
+                profileCode: 'fake',
+                profileCreatedDate: new Date(),
+                profileData: JSON.stringify(me.tempSaveData),
+                bhxnCode: me.tempSaveData.bhxn_code,
+                profileStatus: 0,
             }
+
+            // axios.post(`${common.doMainApi}/`)
         },
         img46Picked(event)
         {

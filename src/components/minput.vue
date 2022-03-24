@@ -48,7 +48,7 @@ export default {
       default: "0px",
     },
     value: {
-      type: [String, Date],
+      type: [String, Date,Number],
       default: "",
     },
   },

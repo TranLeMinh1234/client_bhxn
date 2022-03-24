@@ -92,6 +92,10 @@ export default {
           common.markOff();
         }
       })
+      .catch(res=>{
+        me.$root.$children[0].showNoti('Đã có lỗi xảy ra!');
+        common.markOff();
+      })
     }
   },
   created()

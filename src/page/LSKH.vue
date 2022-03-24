@@ -17,25 +17,23 @@
               <thead>
                   <tr>
                       <th style="width: 40px">STT</th>
-                      <th style="width: 40px">Kê khai</th>
-                      <th style="width: 500px">Tên dịch vụ công</th>
-                      <th style="width: 300px">Mã thủ tục</th>
-                      <th style="width: 400px">Lĩnh vực</th>
-                      <th style="width: 60px">Lịch sử</th>
+                      <th style="width: 100px">Mã loại hồ sơ</th>
+                      <th style="width: 300px">Loại hồ sơ</th>
+                      <th style="width: 100px">Mã hồ sơ</th>
+                      <th style="width: 100px">Trạng thái</th>
+                      <th style="width: 100px">Ngày nộp hồ sơ</th>
+                      <th style="width: 40px"></th>
                   </tr>
               </thead>
               <tbody>
                   <tr v-for="(item, index) in listDisplay" :key="index">
-                      <td>{{item.STT}}</td>
-                      <td style="cursor: pointer">
-                          <img style="width: 20px;height: 20px;margin-left: 6px" src="../assets/img/kh.jpg" alt="">
-                      </td>
-                      <td>{{item.nameService}}</td>
-                      <td>{{item.serviceCode}}</td>
-                      <td>{{item.businessArea}}</td>
-                      <td style="cursor: pointer">
-                          <img style="width: 20px;height: 20px;margin-left: 6px" src="../assets/img/history.jpg" alt="">
-                      </td>
+                      <td>{{index}}</td>
+                      <td>{{item.profileCodeType}}</td>
+                      <td>{{formatProfileTypeCode(item.profileCodeType)}}</td>
+                      <td>{{item.profileCode}}</td>
+                      <td>{{formatProfileStatus(item.profileStatus)}}</td>
+                      <td>{{convertDateToString(item.profileCreatedDate)}}</td>
+                      <td><img src="../assets/img/edit.png" alt="" style="cursor: pointer; width: 20px; height: 20px"></td>
                   </tr>
               </tbody>
           </table>
@@ -51,7 +49,45 @@ export default {
     components: {
         mInput
     },
+    computed:{
+        
+    },
     methods:{
+        formatProfileStatus(status)
+        {
+            let stringStatus = '';
+            switch(status)
+            {
+                case 0:
+                    stringStatus = 'Chờ tiếp nhận';
+                    break;
+                case 1:
+                    stringStatus = 'Đã tiếp nhận';
+                    break;
+                case 2:
+                    stringStatus = 'Chấp nhận hồ sơ';
+                    break;
+                case 3:
+                    stringStatus = 'Từ chối hồ sưo';
+                    break;
+                default:
+                    break;
+            }
+            return stringStatus;
+        },
+        formatProfileTypeCode(TypeCode)
+        {
+            let stringFormated = '';
+            switch(TypeCode)
+            {
+                case '602b':
+                    stringFormated = 'Đăng ký, đăng ký lại (bao gồm cả đóng bù cho thời gian chưa đóng), điều chỉnh phương thức đóng, căn cứ đóng BHXH tự nguyện';
+                    break;
+                default:
+                    break;
+            }
+            return stringFormated;
+        },
         searchProfile(value)
         {
             let me = this;
@@ -74,76 +110,76 @@ export default {
             },
             listProfile: [
                 {
-                    STT: 1,
-                    id: '602b',
-                    nameService: 'Đăng ký, đăng ký lại (bao gồm cả đóng bù cho thời gian chưa đóng), điều chỉnh phương thức đóng, căn cứ đóng BHXH tự nguyện',
-                    serviceCode: '602b',
-                    businessArea: 'Lĩnh vực thu Bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp',
+                    id: 1,
+                    profileCodeType: '602b',
+                    profileCode: 'PF1',
+                    profileStatus: 0,
+                    profileCreatedDate: new Date(),
                 },
                 {
-                    STT: 2,
-                    id: '608a',
-                    nameService: 'Cấp lại sổ BHXH do thay đổi thông tin',
-                    serviceCode: '608a',
-                    businessArea: 'Lĩnh vực cấp sổ bảo hiểm xã hội, thẻ bảo hiểm y tế',
+                    id: 2,
+                    profileCodeType: '602b',
+                    profileCode: 'PF2',
+                    profileStatus: 0,
+                    profileCreatedDate: new Date(),
                 },
                 {
-                    STT: 3,
-                    id: '612b',
-                    nameService: 'Cấp lại, đổi thẻ BHYT do mất, hỏng không thay đổi thông tin',
-                    serviceCode: '612b',
-                    businessArea: 'Lĩnh vực cấp sổ bảo hiểm xã hội, thẻ bảo hiểm y tế',
+                    id: 3,
+                    profileCodeType: '602b',
+                    profileCode: 'PF3',
+                    profileStatus: 0,
+                    profileCreatedDate: new Date(),
                 },
                 {
-                    STT: 4,
-                    id: '612c',
-                    nameService: 'Cấp lại, đổi thẻ BHYT do thay đổi thời điểm đủ 05 năm liên tục, nơi KCB ban đầu',
-                    serviceCode: '612c',
-                    businessArea: 'Cấp lại, đổi thẻ BHYT do thay đổi thời điểm đủ 05 năm liên tục, nơi KCB ban đầu',
+                    id: 4,
+                    profileCodeType: '602b',
+                    profileCode: 'PF4',
+                    profileStatus: 0,
+                    profileCreatedDate: new Date(),
                 },
                 {
-                    STT: 5,
-                    id: '612d',
-                    nameService: 'Cấp lại, đổi thẻ BHYT do thay đổi thông tin về nhân thân, mã đối tượng, mã quyền lợi, mã nơi đối tượng sinh sống',
-                    serviceCode: '612d',
-                    businessArea: 'Lĩnh vực cấp sổ bảo hiểm xã hội, thẻ bảo hiểm y tế',
+                    id: 5,
+                    profileCodeType: '602b',
+                    profileCode: 'PF5',
+                    profileStatus: 0,
+                    profileCreatedDate: new Date(),
                 }
             ],
             listDisplay: [
                 {
-                    STT: 1,
-                    id: '602b',
-                    nameService: 'Đăng ký, đăng ký lại (bao gồm cả đóng bù cho thời gian chưa đóng), điều chỉnh phương thức đóng, căn cứ đóng BHXH tự nguyện',
-                    serviceCode: '602b',
-                    businessArea: 'Lĩnh vực thu Bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp',
+                    id: 1,
+                    profileCodeType: '602b',
+                    profileCode: 'PF1',
+                    profileStatus: 0,
+                    profileCreatedDate: new Date(),
                 },
                 {
-                    STT: 2,
-                    id: '608a',
-                    nameService: 'Cấp lại sổ BHXH do thay đổi thông tin',
-                    serviceCode: '608a',
-                    businessArea: 'Lĩnh vực cấp sổ bảo hiểm xã hội, thẻ bảo hiểm y tế',
+                    id: 2,
+                    profileCodeType: '602b',
+                    profileCode: 'PF2',
+                    profileStatus: 0,
+                    profileCreatedDate: new Date(),
                 },
                 {
-                    STT: 3,
-                    id: '612b',
-                    nameService: 'Cấp lại, đổi thẻ BHYT do mất, hỏng không thay đổi thông tin',
-                    serviceCode: '612a',
-                    businessArea: 'Lĩnh vực cấp sổ bảo hiểm xã hội, thẻ bảo hiểm y tế',
+                    id: 3,
+                    profileCodeType: '602b',
+                    profileCode: 'PF3',
+                    profileStatus: 0,
+                    profileCreatedDate: new Date(),
                 },
                 {
-                    STT: 4,
-                    id: '612b',
-                    nameService: 'Cấp lại, đổi thẻ BHYT do thay đổi thời điểm đủ 05 năm liên tục, nơi KCB ban đầu',
-                    serviceCode: '612a',
-                    businessArea: 'Cấp lại, đổi thẻ BHYT do thay đổi thời điểm đủ 05 năm liên tục, nơi KCB ban đầu',
+                    id: 4,
+                    profileCodeType: '602b',
+                    profileCode: 'PF4',
+                    profileStatus: 0,
+                    profileCreatedDate: new Date(),
                 },
                 {
-                    STT: 5,
-                    id: '612c',
-                    nameService: 'Cấp lại, đổi thẻ BHYT do thay đổi thông tin về nhân thân, mã đối tượng, mã quyền lợi, mã nơi đối tượng sinh sống',
-                    serviceCode: '612c',
-                    businessArea: 'Lĩnh vực cấp sổ bảo hiểm xã hội, thẻ bảo hiểm y tế',
+                    id: 5,
+                    profileCodeType: '602b',
+                    profileCode: 'PF5',
+                    profileStatus: 0,
+                    profileCreatedDate: new Date(),
                 }
             ],
         }

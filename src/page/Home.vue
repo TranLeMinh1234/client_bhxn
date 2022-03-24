@@ -89,22 +89,28 @@ export default {
     {
       let me = this;
       common.markOn();
-      axios
-      .get(`${common.doMainApi}/BHXH/login?bhxh_code=${me.dataLogin.bhxn_code}&acc_password=${me.dataLogin.password}`)
-      .then(res=>{
-        if(res.data.status == 'accepted')
-        {
-          localStorage.setItem('infoUser', JSON.stringify(me.dataLogin));
-          me.closeDialog();
-          common.markOff();
-          me.$router.push('/DSTT');
-        }
-        else
-        {
-          me.$root.$children[0].showNoti('Mã bảo hiểm xã hội hoặc mật khẩu chưa chính xác');
-          common.markOff();
-        }
-      })
+      localStorage.setItem('infoUser',JSON.stringify(me.dataLogin))
+      me.$router.push('/DSTT')
+      // axios
+      // .get(`${common.doMainApi}/BHXH/login?bhxh_code=${me.dataLogin.bhxn_code}&acc_password=${me.dataLogin.password}`)
+      // .then(res=>{
+      //   if(res.data.status == 'accepted')
+      //   {
+      //     localStorage.setItem('infoUser', JSON.stringify(me.dataLogin));
+      //     me.closeDialog();
+      //     common.markOff();
+      //     me.$router.push('/DSTT');
+      //   }
+      //   else
+      //   {
+      //     me.$root.$children[0].showNoti('Mã bảo hiểm xã hội hoặc mật khẩu chưa chính xác');
+      //     common.markOff();
+      //   }
+      // })
+      // .catch(res=>{
+      //   me.$root.$children[0].showNoti('Đã có lỗi xảy ra!');
+      //   common.markOff();
+      // })
     }
   }
 }
