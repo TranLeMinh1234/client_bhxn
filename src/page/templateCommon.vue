@@ -30,7 +30,8 @@
       </div>
       <dir class="nav-bar">
           <router-link to="/DSTT" class="item-nav" v-if="isLogin">Kê khai hồ sơ</router-link>
-          <router-link to="/NBHXNDT" class="item-nav" v-if="isLogin">Nộp BHXN điện tử</router-link>
+          <!-- <router-link to="/NBHXNDT" class="item-nav" v-if="isLogin">Nộp BHXN điện tử</router-link> -->
+          <div @click="featureDeveloping" class="item-nav" v-if="isLogin">Nộp BHXN điện tử</div>
       </dir>
       <div class="body-content">
         <router-view></router-view>
@@ -51,6 +52,11 @@ export default {
   extends: BasePage,
   methods:
   {
+    featureDeveloping(nameField)
+    {
+        let me = this;
+        me.$root.$children[0].showNoti('Tính năng đang được phát triển.');
+    },
     logout()
     {
       let me = this;
@@ -78,28 +84,32 @@ export default {
           
       if(!isValid)
           return;
-      common.markOn();
-      axios
-      .get(`${common.doMainApi}/BHXH/login?bhxh_code=${me.dataLogin.bhxn_code}&acc_password=${me.dataLogin.password}`)
-      .then(res=>{
-        if(res.data.status == 'accepted')
-        {
-          localStorage.setItem('infoUser', JSON.stringify(me.dataLogin));
-          me.closeDialog();
-          me.checkPermisson();
-          common.markOff();
-          me.$router.push('/DSTT');
-        }
-        else
-        {
-          me.$root.$children[0].showNoti('Mã bảo hiểm xã hội hoặc mật khẩu chưa chính xác');
-          common.markOff();
-        }
-      })
-      .catch(res=>{
-        me.$root.$children[0].showNoti('Đã có lỗi xảy ra!');
-        common.markOff();
-      })
+      //common.markOn();
+      localStorage.setItem('infoUser',JSON.stringify(me.dataLogin))
+      me.$router.push('/DSTT')
+      me.closeDialog();
+      me.checkPermisson();
+      // axios
+      // .get(`${common.doMainApi}/BHXH/login?bhxh_code=${me.dataLogin.bhxn_code}&acc_password=${me.dataLogin.password}`)
+      // .then(res=>{
+      //   if(res.data.status == 'accepted')
+      //   {
+      //     localStorage.setItem('infoUser', JSON.stringify(me.dataLogin));
+      //     me.closeDialog();
+      //     me.checkPermisson();
+      //     common.markOff();
+      //     me.$router.push('/DSTT');
+      //   }
+      //   else
+      //   {
+      //     me.$root.$children[0].showNoti('Mã bảo hiểm xã hội hoặc mật khẩu chưa chính xác');
+      //     common.markOff();
+      //   }
+      // })
+      // .catch(res=>{
+      //   me.$root.$children[0].showNoti('Đã có lỗi xảy ra!');
+      //   common.markOff();
+      // })
     }
   },
   created()

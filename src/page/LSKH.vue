@@ -33,7 +33,7 @@
                       <td>{{item.profileCode}}</td>
                       <td>{{formatProfileStatus(item.profileStatus)}}</td>
                       <td>{{convertDateToString(item.profileCreatedDate)}}</td>
-                      <td><img src="../assets/img/edit.png" alt="" style="cursor: pointer; width: 20px; height: 20px"></td>
+                      <td><img src="../assets/img/edit.png"  @click="featureDeveloping('history')" alt="" style="cursor: pointer; width: 20px; height: 20px"></td>
                   </tr>
               </tbody>
           </table>
@@ -53,6 +53,14 @@ export default {
         
     },
     methods:{
+        featureDeveloping(nameField)
+        {
+            let me = this;
+            if(nameField == 'history')
+                me.$root.$children[0].showNoti('Tính năng đang được phát triển.');
+            else
+                me.$root.$children[0].showNoti('Biểu mẫu thủ tục đang được phát triển.');
+        },
         formatProfileStatus(status)
         {
             let stringStatus = '';

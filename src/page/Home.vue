@@ -92,7 +92,7 @@ export default {
           
       if(!isValid)
           return;
-      common.markOn();
+      // common.markOn();
       localStorage.setItem('infoUser',JSON.stringify(me.dataLogin))
       me.$router.push('/DSTT')
       // axios

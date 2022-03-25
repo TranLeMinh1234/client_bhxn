@@ -5,7 +5,7 @@
       </div>
       <div class="filter-bar">
           <div class="filter-item">
-              <m-input @inputEvent="searchProfile" placeholder="Nhập mã hoặc tên thủ tục" v-model="param.codeOrNameProfile"/>
+              <m-input @inputEvent="searchProfile" placeholder="Nhập mã hoặc tên thủ tục" v-model="param.codeOrNameProfile" paddingRight="20px"/>
               <img src="../assets/img/find.png" alt="" class="find-icon">
           </div>
       </div>
@@ -25,15 +25,16 @@
                   <tr v-for="(item, index) in listDisplay" :key="index">
                       <td>{{item.STT}}</td>
                       <td style="cursor: pointer">
-                          <router-link :to="item.serviceCode">
-                              <img style="width: 20px;height: 20px;margin-left: 6px" src="../assets/img/kh.jpg" alt="">
-                          </router-link>
+                        <router-link :to="item.serviceCode" v-if="listHaveDevelop.includes(item.serviceCode) == true">
+                            <img style="width: 20px;height: 20px;margin-left: 6px" src="../assets/img/kh.jpg" alt="">
+                        </router-link>
+                        <img @click="featureDeveloping('template')" v-if="listHaveDevelop.includes(item.serviceCode) == false" style="width: 20px;height: 20px;margin-left: 6px" src="../assets/img/kh.jpg" alt="">
                       </td>
                       <td>{{item.nameService}}</td>
                       <td>{{item.serviceCode}}</td>
                       <td>{{item.businessArea}}</td>
                       <td style="cursor: pointer">
-                          <img style="width: 20px;height: 20px;margin-left: 6px" src="../assets/img/history.jpg" alt="">
+                          <img @click="featureDeveloping('history')" style="width: 20px;height: 20px;margin-left: 6px" src="../assets/img/history.jpg" alt="">
                       </td>
                   </tr>
               </tbody>
@@ -57,6 +58,14 @@ export default {
             me.listDisplay = me.listProfile.filter(item => {
                 return item.id.includes(value) || item.nameService.includes(value);
             })
+        },
+        featureDeveloping(nameField)
+        {
+            let me = this;
+            if(nameField == 'history')
+                me.$root.$children[0].showNoti('Tính năng đang được phát triển.');
+            else
+                me.$root.$children[0].showNoti('Biểu mẫu thủ tục đang được phát triển.');
         }
     },
     data()
@@ -66,6 +75,8 @@ export default {
             param: {
                 codeOrNameProfile: ''
             },
+            //'612b','612c','612d'
+            listHaveDevelop: ['608a'],
             listProfile: [
                 {
                     STT: 1,
