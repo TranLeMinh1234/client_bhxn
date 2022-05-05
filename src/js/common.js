@@ -1,5 +1,5 @@
 var commonJS = {
-    doMainApi: 'http://localhost:8084',
+    doMainApi: 'http://localhost:8080',
     markOn: function()
     {
         let body = document.querySelector('body');
