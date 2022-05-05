@@ -105,8 +105,9 @@
 import minput from '../components/minput.vue'
 import combobox from '../components/combobox.vue'
 import validateObserve from '../components/validateObserve.vue'
-import common from '../js/common.js';
+import commonJS from '../js/common.js';
 import Toast from '../js/toastFunc.js'
+import axios from 'axios';
 // import axios from 'axios';
 
 export default {
@@ -144,15 +145,27 @@ export default {
                 return;
                 
             let dataSave = {
-                profileId: 0,
-                profileCodeType: '602a',
-                profileCode: 'fake',
-                profileCreatedDate: new Date(),
-                profileData: JSON.stringify(me.tempSaveData),
-                bhxnCode: me.tempSaveData.bhxn_code,
-                profileStatus: 0,
+                profileCodeType: "602a",
+                profileData: me.tempSaveData,
+                bhxhCode: me.tempSaveData.bhxh_code,
             }
 
+            let headers = {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Content-Type': 'application/json',
+                };
+            axios.post(`${commonJS.doMainApi}/BHXH/register`, dataSave, { headers })
+            .then(response => {
+                if(response.data.status == 'This bhxh code is already exist')
+                {
+                    me.$root.$children[0].showNoti('Mã bảo hiểm xã hội đã tồn tại!');
+                }
+                else if(response.data.status.indexOf("success") != -1)
+                {
+                    Toast.callToast('Đăng ký thành công',"success");
+                }
+            });
             // axios.post(`${common.doMainApi}/`)
         },
         img46Picked(event)
@@ -177,7 +190,7 @@ export default {
         return {
             tempSaveData:{
                 name_user: '',
-                bhxn_code: '',
+                bhxh_code: '',
                 CMND: '',
                 tp: '',
                 h: '',

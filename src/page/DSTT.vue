@@ -76,7 +76,7 @@ export default {
                 codeOrNameProfile: ''
             },
             //'612b','612c','612d'
-            listHaveDevelop: ['608a'],
+            listHaveDevelop: ['608a','612a'],
             listProfile: [
                 {
                     STT: 1,
@@ -131,7 +131,7 @@ export default {
                 },
                 {
                     STT: 3,
-                    id: '612b',
+                    id: '612a',
                     nameService: 'Cấp lại, đổi thẻ BHYT do mất, hỏng không thay đổi thông tin',
                     serviceCode: '612a',
                     businessArea: 'Lĩnh vực cấp sổ bảo hiểm xã hội, thẻ bảo hiểm y tế',
@@ -140,7 +140,7 @@ export default {
                     STT: 4,
                     id: '612b',
                     nameService: 'Cấp lại, đổi thẻ BHYT do thay đổi thời điểm đủ 05 năm liên tục, nơi KCB ban đầu',
-                    serviceCode: '612a',
+                    serviceCode: '612b',
                     businessArea: 'Cấp lại, đổi thẻ BHYT do thay đổi thời điểm đủ 05 năm liên tục, nơi KCB ban đầu',
                 },
                 {

@@ -56,7 +56,7 @@ export default {
         filter()
         {
             let me = this;
-            me.dataFilter = me.dataStore.filter((ele)=>{return ele[me.displayField].toLowerCase().includes(me.valueSearch.toLowerCase(),0)})
+                me.dataFilter = me.dataStore.filter((ele)=>{return ele[me.displayField] && me.valueSearch ? ele[me.displayField].toLowerCase().includes(me.valueSearch.toLowerCase(),0): false})
         },
         setUpEvent()
         {

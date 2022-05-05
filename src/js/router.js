@@ -6,6 +6,10 @@ import DSTT from '../page/DSTT.vue'
 import LSKH from '../page/LSKH.vue'
 import a608 from '../page/608a.vue'
 import DK from '../page/DK.vue'
+import a612 from '../page/612a.vue'
+import NBHXH from '../page/NBHXH.vue'
+import CQBH from '../page/CQBH.vue'
+
 
 var router = new VueRouter({
     routes: [
@@ -21,9 +25,19 @@ var router = new VueRouter({
         component:TemplateCommon,
         children: [
           {
+            name: 'CQBH',
+            path: '/CQBH',
+            component:CQBH,
+          },
+          {
             name: 'DK',
             path: '/DK',
             component:DK,
+          },
+          {
+            name: 'NBHXH',
+            path: '/NBHXH',
+            component:NBHXH,
           },
           {
             name: 'KKHS',
@@ -42,8 +56,23 @@ var router = new VueRouter({
               },
               {
                 name: '608a',
+                path: '/608a/:mode/:id',
+                component:a608,
+              },
+              {
+                name: '608a',
                 path: '/608a',
                 component:a608,
+              },
+              {
+                name: '612a',
+                path: '/612a/:mode/:id',
+                component:a612,
+              },
+              {
+                name: '612a',
+                path: '/612a',
+                component:a612,
               }
             ]
           }

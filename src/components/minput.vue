@@ -9,6 +9,7 @@
       :style="{
         paddingRight: paddingRight ? paddingRight : '0px',
       }"
+      :disabled="mode == 'watch'"
     />
     <div
       :style="{
@@ -31,6 +32,10 @@ export default {
   name: "mInput",
   extends: BaseInputComponentVue,
   props: {
+    mode: {
+      type: String,
+      default: "text",
+    },
     type: {
       type: String,
       default: "text",
@@ -51,6 +56,13 @@ export default {
       type: [String, Date,Number],
       default: "",
     },
+  },
+  watch:{
+    value(newValue, oldValue)
+    {
+      let me = this;
+      me.valueResult = newValue;
+    }
   },
   computed: {
     listenEvent: function () {

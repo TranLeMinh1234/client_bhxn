@@ -11,6 +11,7 @@
                 @keyup.up="changeSelectedItemInDropDown"
                 @keyup.down="changeSelectedItemInDropDown"
                 :placeholder="placeholder"
+                :disabled="mode == 'watch'"
             >
             <div 
                 :class="['arrow-combobox' , !isValid ? 'inValid-arrow' : '']" 
@@ -45,6 +46,10 @@ export default {
     extends: BaseInputComponent,
     name: 'combobox',
      props: {
+        mode: {
+            type: String,
+            default: ''
+        },
         value: {
             type:[String,Number],
             default: ''
@@ -76,6 +81,14 @@ export default {
         placeholder: {
             type: String,
             default: ""
+        }
+    },
+    watch:{
+        value(newValue, oldValue)
+        {
+            let me = this;
+            me.valueResult = newValue;
+            me.valueSearch = me.mapDisplayField(newValue);
         }
     },
     components:{
@@ -120,6 +133,14 @@ export default {
         me.setUpEvent();
     },
     methods:{
+        mapDisplayField(value)
+        {
+            let me = this;
+            let arrValue = me.dataStore.filter(ele => ele.valueField == value);
+            if(arrValue.length > 0)
+                return arrValue[0].displayField;
+            return null;
+        },
         validateInfoSelf()
         {
             let me = this;
@@ -141,7 +162,7 @@ export default {
                 {
                     if(me.dataStore)
                     {
-                        let ObjectSelect = me.dataStore.find(ele => {return ele.displayField.toLowerCase() === me.valueSearch.toLowerCase();});
+                        let ObjectSelect = me.dataStore.find(ele => {return ele.displayField && me.valueSearch? ele.displayField.toLowerCase() === me.valueSearch.toLowerCase() : false;});
                         // case tn để tránh validate khi chưa focus, giá trị không đổi => không validate
                         if((!ObjectSelect && !me.valueResult) || (ObjectSelect && me.valueResult === ObjectSelect[me.valueField]))
                         {
@@ -194,13 +215,18 @@ export default {
         TurnOnOffDropDownFunc()
         {
             let me = this;
+
+            if(me.mode == 'update')
+                return;
+            
             me.showDropDown = !me.showDropDown;
             me.$el.childNodes[0].childNodes[0].focus();
         }
     },
     data(){
+        let me = this;
         return {
-            valueResult: null,
+            valueResult: me.value,
             valueSearch: '',
             showDropDown: false,
         };
