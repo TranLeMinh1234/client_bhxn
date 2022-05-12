@@ -17,10 +17,10 @@
         <div>Thời gian cuối cùng đóng bảo hiểm:</div><div class="value-input">{{dataLoad.latestPaymentDate}}</div>
       </div>
       <div class="line-input" v-show="dataLoad.paymentState.startDate && ((isRedeem == false && isPaid == true) || (isRedeem == false && isPaid == false))">
-        <div>Phương thức đóng hiện tại:</div><div class="value-input">{{dataLoad.currentPayMethod + " Tháng"}}</div>
+        <div>Phương thức đóng hiện tại:</div><div class="value-input">{{currentPayMethod2 + " Tháng"}}</div>
       </div>
        <div class="line-input" v-show="!dataLoad.paymentState.startDate">
-        <div>Phương thức đóng hiện tại:</div><div class="value-input"><combobox v-model="dataLoad.currentPayMethod" :dataStore="dataMethod" displayField="displayField" valueField="valueField" /></div>
+        <div>Phương thức đóng hiện tại:</div><div class="value-input"><combobox v-model="currentPayMethod2" :dataStore="dataMethod" displayField="displayField" valueField="valueField" /></div>
       </div>
       <div class="line-input" v-show="dataLoad.paymentState.startDate && !isSubmitServer && ((isRedeem == false && isPaid == true) || (isRedeem == false && isPaid == false))">
         <div>Mức đóng hiện tại:</div><div class="value-input">{{dataLoad.currentPayAmount + " đ"}}</div>
@@ -28,17 +28,17 @@
       <div class="line-input" v-show="!dataLoad.paymentState.startDate">
         <div>Mức đóng hiện tại:</div><div class="value-input"><combobox v-model="dataLoad.currentPayAmount" :dataStore="dataRange" displayField="displayField" valueField="valueField" /></div>
       </div>
-      <div class="line-input" v-show="(isRedeem == false && isPaid == true)"> 
-        <div>Số tiền cần đóng:</div><div class="value-input">{{dataLoad.currentPayAmount * dataLoad.currentPayMethod + " đ"}}</div>
+      <div class="line-input" v-show="(isRedeem == false && isPaid == false)"> 
+        <div>Số tiền cần đóng:</div><div class="value-input">{{dataLoad.currentPayAmount * currentPayMethod2 + " đ"}}</div>
       </div>
       <div class="line-input" v-show="(isRedeem == false && !isPaid == true)"> 
-        <div>Thời gian bắt đầu của kỳ hạn: </div><div class="value-input">{{dataLoad.paymentState.startDate}}</div>
+        <div>Thời gian bắt đầu của kỳ hạn: </div><div class="value-input">{{dataLoad.timeStartPeriod}}</div>
       </div>
       <div class="line-input" v-show="(isRedeem == false && !isPaid == true)"> 
-        <div>Thời gian kết thúc của kỳ hạn: </div><div class="value-input">{{dataLoad.paymentState.endDate}}</div>
+        <div>Thời gian kết thúc của kỳ hạn: </div><div class="value-input">{{dataLoad.timeEndPeriod}}</div>
       </div>
-      <div class="line-input" v-show="(isRedeem == false && isPaid == true)"> 
-        <div>Số tiền cần đóng:</div><div class="value-input">{{dataLoad.currentPayAmount * dataLoad.currentPayMethod + " đ"}}</div>
+      <div class="line-input" v-show="(isRedeem == false && isPaid == false)"> 
+        <div>Số tiền cần đóng:</div><div class="value-input">{{dataLoad.currentPayAmount * currentPayMethod2 + " đ"}}</div>
       </div>
       <div class="line-input" style="color: green" v-show="isPaid && !isRedeem">
         <div>Bạn đã đóng bảo hiểm xã hội kì hạn từ ngày: </div><div class="value-input">{{dataLoad.paymentState.startDate}}</div>
@@ -93,13 +93,30 @@ export default {
       axios
       .get(`${common.doMainApi}/BHXH/payment/info?bhxhCode=${me.infoUser.bhxn_code}`,{headers})
       .then(res=>{
-        console.log(res);
         me.dataLoad = JSON.parse(res.data.status)
+
         if(!me.dataLoad.paymentState)
           me.dataLoad.paymentState = {}
+
         me.isRedeem = me.dataLoad.paymentState.isRedeem ? me.dataLoad.paymentState.isRedeem : me.isRedeem;
         me.isPaid = me.dataLoad.paymentState.isPaid? me.dataLoad.paymentState.isPaid : me.isPaid;
+        me.currentPayMethod2 = me.dataLoad.currentPayMethod
+
+        if(!me.isPaid) {
+          me.dataLoad.timeStartPeriod = new Date()
+
+        }
       })
+  },
+  watch: {
+    currentPayMethod2: function() {
+      let me = this;
+      me.dataLoad.timeEndPeriod = new Date(me.dataLoad.timeStartPeriod);
+
+      me.dataLoad.timeEndPeriod.setMonth(
+        me.dataLoad.timeEndPeriod.getMonth() + me.currentPayMethod2
+      );
+    }
   },
   components: {combobox,mInput},
   methods: {
@@ -117,9 +134,6 @@ export default {
     dm()
     {
       let me = this;
-      me.isPaid =  true;
-      me.isRedeem =  false;
-      me.isSubmitServer = true;
 
       let headers = {
                         'Access-Control-Allow-Origin': '*',
@@ -129,14 +143,21 @@ export default {
         axios.post(`${common.doMainApi}/BHXH/payment`,{ 
             "action": "pay", 
             "accountNumber": me.accountNumber, 
-            "money": me.dataLoad.currentPayAmount * me.dataLoad.currentPayMethod,
+            "money": me.dataLoad.currentPayAmount * me.currentPayMethod2,
             "bhxhCode": me.dataLoad.bhxhCode, 
             "paymentAmountPerMonth": me.dataLoad.currentPayAmount, 
-            "paymentPayMethod": me.dataLoad.currentPayMethod,
+            "paymentPayMethod": me.currentPayMethod2,
             "bankName": me.bankName,
         },{headers})
         .then(res => {
           console.log(res);
+          let response = JSON.parse(res.data.status);
+          if(response.response_code == 200) {
+            window.location.reload();
+            console.log(response.message)
+          } else {
+            alert(response.message);
+          }
         });
     }
   },
@@ -144,6 +165,7 @@ export default {
     return {
       accountNumber: '',
       isSubmitServer: false,
+      currentPayMethod2: 0,
       dataLoad: {
         name: 'Trần Lê Minh',
         bhxhCode: 'BHXN001',
@@ -155,7 +177,8 @@ export default {
         timeEndPeriod: new Date(),
         paymentState: {
           startDate: new Date()
-        }
+        },
+        currentPayAmount: 0
       },
       bankName: 'Agriben',
       isPaid: true,
