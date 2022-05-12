@@ -31,6 +31,7 @@
       <dir class="nav-bar">
           <router-link to="/DSTT" class="item-nav" v-if="isLogin">Kê khai hồ sơ</router-link>
           <router-link to="/NBHXH" class="item-nav" v-if="isLogin">Nộp BHXN điện tử</router-link>
+          <router-link to="/HP" class="item-nav" v-if="isLogin">Lịch sử đóng bảo hiểm</router-link>
           <!-- <div @click="featureDeveloping" class="item-nav" v-if="isLogin">Nộp BHXN điện tử</div> -->
       </dir>
       <div class="body-content">

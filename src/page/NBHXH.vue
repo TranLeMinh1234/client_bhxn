@@ -129,7 +129,7 @@ export default {
         axios.post(`${common.doMainApi}/BHXH/payment`,{ 
             "action": "pay", 
             "accountNumber": me.accountNumber, 
-            "money": me.dataLoad.currentPayAmount * me.dataLoad. currentPayMethod,
+            "money": me.dataLoad.currentPayAmount * me.dataLoad.currentPayMethod,
             "bhxhCode": me.dataLoad.bhxhCode, 
             "paymentAmountPerMonth": me.dataLoad.currentPayAmount, 
             "paymentPayMethod": me.dataLoad.currentPayMethod,

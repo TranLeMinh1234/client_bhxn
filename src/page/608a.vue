@@ -92,6 +92,16 @@ export default {
     },
     created(){
         let me = this;
+
+        me.checkPermisson = function()
+        {
+            // check quyền 
+            let infoUser = localStorage.getItem('infoUser');
+            if(!infoUser)
+                me.$route.push('/Home')
+        }
+
+        me.checkPermisson();
     },
     mounted(){
         let me = this;
@@ -175,7 +185,7 @@ export default {
         return {
             mode: "add",
             tempSaveData: {
-                bhxhCodeNew: '123123123',
+                bhxhCodeNew: '',
                 nameUser: '',
                 gender: 1,
                 tp: '',

@@ -77,6 +77,21 @@ export default {
     },
      created(){
         let me = this;
+
+        me.checkPermisson = function()
+        {
+            // check quyền 
+            let infoUser = localStorage.getItem('infoUser');
+            if(!infoUser)
+            {
+                me.$router.push('/Home');
+                return false;
+            }
+        }
+
+        if(!me.checkPermisson())
+            return;
+            
         let idRecord = me.$route.params.id;
         if(idRecord)
         {

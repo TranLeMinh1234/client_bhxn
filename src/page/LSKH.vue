@@ -54,6 +54,22 @@ export default {
     name: 'DSTT',
     created(){
       let me = this;
+
+      me.checkPermisson = function()
+        {
+            // check quyền 
+            debugger;
+            let infoUser = localStorage.getItem('infoUser');
+            if(!infoUser)
+            {
+                me.$router.push('/Home');
+                return false;
+            }
+        }
+
+        // if(!me.checkPermisson())
+        //     return;
+
       let headers = {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': '*',

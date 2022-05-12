@@ -51,6 +51,23 @@ export default {
     components: {
         mInput
     },
+    created()
+    {
+        let me = this;
+        me.checkPermisson = function()
+        {
+            // check quyền 
+            let infoUser = localStorage.getItem('infoUser');
+            if(!infoUser)
+            {
+                me.$router.push('/Home');
+                return false;
+            }
+        }
+
+        if(!me.checkPermisson())
+            return;
+    },
     methods:{
         searchProfile(value)
         {

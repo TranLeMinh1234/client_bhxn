@@ -9,6 +9,7 @@ import DK from '../page/DK.vue'
 import a612 from '../page/612a.vue'
 import NBHXH from '../page/NBHXH.vue'
 import CQBH from '../page/CQBH.vue'
+import HP from '../page/HP.vue'
 
 
 var router = new VueRouter({
@@ -24,6 +25,11 @@ var router = new VueRouter({
         path: '/App',
         component:TemplateCommon,
         children: [
+          {
+            name: 'HP',
+            path: '/HP',
+            component:HP,
+          },
           {
             name: 'CQBH',
             path: '/CQBH',
