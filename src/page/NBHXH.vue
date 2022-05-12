@@ -50,7 +50,7 @@
             <combobox v-model="bankName" displayField="displayField" valueField="valueField" :dataStore="dataBank" />
           </div>
         </div>
-        <div  style="display: flex;margin-left: 20px">
+        <div  style="display: flex;margin-left: 20px" v-show="false">
           <div>Tài khoản: </div><div class="value-input">
             <m-input v-model="accountNumber"/>
           </div>
@@ -107,6 +107,19 @@ export default {
 
         }
       })
+
+
+    var url = window.location.hash;
+    var c = url.substr(url.length - 1);
+    if(c != null) {
+      if(c == "1") {
+        window.alert("Thanh toán thành công")
+      } else if(c == "0") {
+        window.alert("Thanh toán thất bại")
+      } else if(c == "2") {
+        window.alert("Tài khoản không đủ số dư")
+      }
+    }
   },
   watch: {
     currentPayMethod2: function() {
@@ -140,20 +153,17 @@ export default {
                         'Access-Control-Allow-Headers': '*',
                         'Content-Type': 'application/json',
                     };
-        axios.post(`${common.doMainApi}/BHXH/payment`,{ 
-            "action": "pay", 
-            "accountNumber": me.accountNumber, 
-            "money": me.dataLoad.currentPayAmount * me.currentPayMethod2,
-            "bhxhCode": me.dataLoad.bhxhCode, 
-            "paymentAmountPerMonth": me.dataLoad.currentPayAmount, 
-            "paymentPayMethod": me.currentPayMethod2,
-            "bankName": me.bankName,
-        },{headers})
+        
+        let amount = me.dataLoad.currentPayAmount * me.currentPayMethod2;
+        axios.post(`${common.doMainApi}/BHXH/payment?action=pay
+          &amount=${amount}&bhxhCode=${me.dataLoad.bhxhCode}&paymentAmountPerMonth=${me.dataLoad.currentPayAmount}
+          &paymentPayMethod=${me.currentPayMethod2}&bankcode=${me.bankName}`,{headers}
+        )
         .then(res => {
           console.log(res);
           let response = JSON.parse(res.data.status);
           if(response.response_code == 200) {
-            window.location.reload();
+            window.location.replace(response.paymentUrl);
             console.log(response.message)
           } else {
             alert(response.message);
@@ -187,6 +197,10 @@ export default {
         {
           displayField: "Agriben",
           valueField: "Agriben"
+        },
+        {
+          displayField: "Ngân hàng quốc dân",
+          valueField: "NCB"
         }
       ],
       dataMethod: [
